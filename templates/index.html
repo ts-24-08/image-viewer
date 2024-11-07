@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>S3 Bildergalerie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .gallery img {
+            max-width: 30%;
+            height: auto;
+        }
+        .fallback-message {
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bilder aus dem S3-Bucket</h1>
+    {% if images %}
+        <div class="gallery">
+            {% for image in images %}
+                <img src="{{ image }}" alt="S3 Image">
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="fallback-message">Keine Bilder im S3-Bucket gefunden.</p>
+    {% endif %}
+</body>
+</html>
